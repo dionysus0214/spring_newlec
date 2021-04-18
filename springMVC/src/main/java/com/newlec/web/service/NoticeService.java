@@ -1,7 +1,6 @@
 package com.newlec.web.service;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +12,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.newlec.web.entity.Notice;
-import com.newlec.web.service.NoticeService;
 
 public class NoticeService {
 	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
