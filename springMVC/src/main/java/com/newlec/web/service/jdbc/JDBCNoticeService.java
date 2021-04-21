@@ -15,10 +15,6 @@ import com.newlec.web.entity.Notice;
 import com.newlec.web.service.NoticeService;
 
 public class JDBCNoticeService implements NoticeService {
-	private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
-	private String uid = "NEWLEC";
-	private String pwd = "11111";
-	private String driver = "oracle.jdbc.driver.OracleDriver";
 
 	private DataSource dataSource;
 
@@ -33,8 +29,6 @@ public class JDBCNoticeService implements NoticeService {
 
 		String sql = "SELECT * FROM NOTICE_VIEW WHERE " + field + " LIKE ? AND NUM BETWEEN ? AND ?";
 
-		// Class.forName(driver);
-		// Connection con = DriverManager.getConnection(url,uid, pwd);
 		Connection con = dataSource.getConnection();
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, "%" + query + "%");
@@ -66,14 +60,11 @@ public class JDBCNoticeService implements NoticeService {
 		return list;
 	}
 
-	// Scalar
 	public int getCount() throws ClassNotFoundException, SQLException {
 		int count = 0;
 
 		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE";
 
-		// Class.forName(driver);
-		// Connection con = DriverManager.getConnection(url,uid, pwd);
 		Connection con = dataSource.getConnection();
 		Statement st = con.createStatement();
 
@@ -99,11 +90,7 @@ public class JDBCNoticeService implements NoticeService {
 		String sql = "INSERT INTO notice (    " + "    title," + "    writer_id," + "    content," + "    files"
 				+ ") VALUES (?,?,?,?)";
 
-		// Class.forName(driver);
-		// Connection con = DriverManager.getConnection(url,uid, pwd);
 		Connection con = dataSource.getConnection();
-		// Statement st = con.createStatement();
-		// st.ex....(sql)
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, title);
 		st.setString(2, writerId);
